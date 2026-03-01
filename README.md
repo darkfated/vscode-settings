@@ -65,7 +65,3 @@ cd vscode-settings
    ```bash
    cat extensions.txt | xargs -L 1 code --install-extension
    ```
-
-## 🔒 Лицензия
-
-Этот проект лицензирован под MIT License. [MIT License](https://github.com/darkfated/vscode-settings/blob/master/LICENSE)
