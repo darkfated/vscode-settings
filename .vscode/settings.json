@@ -1,30 +1,77 @@
 {
-  // --------------------
-  // UI / старт и внешний вид
-  // --------------------
-  // Что открывать при старте (none / welcomePage / newUntitledFile)
+  // --------------------------------------------------------------
+  // 🎨 Интерфейс
+  // --------------------------------------------------------------
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "One Dark Pro",
+  "editor.fontFamily": "Google Sans Code, Consolas, 'Courier New', monospace",
+  "editor.fontSize": 18,
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 1.5,
+  "editor.letterSpacing": 0.3,
+  "debug.console.fontSize": 16,
   "workbench.startupEditor": "welcomePage",
-  "workbench.colorTheme": "One Dark Pro Darker",
-  "workbench.iconTheme": "material-icon-theme",
   "workbench.navigationControl.enabled": false,
   "workbench.layoutControl.enabled": false,
   "window.commandCenter": false,
   "window.menuBarVisibility": "visible",
+  "window.titleBarStyle": "custom",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.wrapTabs": true,
+  "workbench.tree.renderIndentGuides": "none",
 
-  // --------------------
-  // Безопасность / доверие к workspace
-  // --------------------
-  "security.workspace.trust.enabled": false,
+  // --------------------------------------------------------------
+  // 🖱️ Редактор
+  // --------------------------------------------------------------
+  "editor.accessibilitySupport": "off",
+  "editor.multiCursorModifier": "alt",
+  "editor.linkedEditing": true,
+  "editor.selectionHighlight": true,
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.suggest.showStatusBar": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.smoothScrolling": true,
+  "editor.scrollBeyondLastLine": true,
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 120,
+  "editor.wrappingIndent": "same",
+  "editor.renderWhitespace": "selection",
+  "editor.renderControlCharacters": true,
+  "editor.renderFinalNewline": "off",
+  "editor.inlayHints.enabled": "onUnlessPressed",
+  "editor.cursorBlinking": "expand",
+  "editor.cursorStyle": "line-thin",
+  "editor.cursorSmoothCaretAnimation": "on",
 
-  // --------------------
-  // Files / Explorer / поиск
-  // --------------------
+  // --------------------------------------------------------------
+  // 💾 Файлы, поиск, Git и производительность
+  // --------------------------------------------------------------
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "files.trimTrailingWhitespace": true,
-  "diffEditor.ignoreTrimWhitespace": true,
-
-  // Исключения наблюдения и поиска - уменьшает нагрузку в больших проектах
+  "explorer.sortOrder": "default",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock, .npmrc, .nvmrc",
+    "tsconfig.json": "tsconfig.*.json, tsconfig.app.json, tsconfig.node.json",
+    "vite.config.ts": "vite.config.js, vite.config.mts, vitest.config.ts",
+    "README.md": "README*.md, CHANGELOG.md, CONTRIBUTING.md, LICENSE",
+    ".env": ".env.*, .env.local, .env.*.local",
+    "*.tsx": "$(capture).ts, $(capture).css, $(capture).scss",
+    "*.jsx": "$(capture).js, $(capture).css, $(capture).scss",
+    "Cargo.toml": "Cargo.lock",
+    "go.mod": "go.sum",
+    "pubspec.yaml": "pubspec.lock",
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.next": true,
+    "**/out": true,
+    "**/coverage": true,
+    "**/.turbo": true,
+  },
   "files.watcherExclude": {
     "**/node_modules/**": true,
     "**/vendor/**": true,
@@ -35,176 +82,92 @@
     "**/out/**": true,
     "**/.cache/**": true,
     "**/coverage/**": true,
-    "**/.turbo/**": true
+    "**/.turbo/**": true,
+    "**/temp/**": true,
+    "**/logs/**": true,
   },
-  "search.exclude": {
-    "**/node_modules/**": true,
-    "**/vendor/**": true,
-    "**/dist/**": true,
-    "**/build/**": true,
-    "**/.next/**": true,
-    "**/out/**": true,
-    "**/coverage/**": true
-  },
+  "files.trimTrailingWhitespace": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "git.autofetch": true,
+  "git.autofetchPeriod": 900,
+  "git.confirmSync": true,
+  "git.enableSmartCommit": true,
+  "git.ignoreMissingGitWarning": true,
+  "git.fetchOnPull": true,
+  "search.followSymlinks": false,
+  "search.smartCase": true,
+  "search.useIgnoreFiles": true,
 
-  // --------------------
-  // Network / proxy
-  // --------------------
-  "http.proxySupport": "fallback",
-
-  // --------------------
-  // Большие файлы / производительность
-  // --------------------
-  "files.largeFileOptimizations": true,
-  "files.maxMemoryForLargeFilesMB": 4096,
-
-  // --------------------
-  // Рендеринг / шрифты / прокрутка
-  // --------------------
-  "editor.fontSize": 20,
-  "debug.console.fontSize": 16,
-  "editor.fontFamily": "Google Sans Code, Consolas, 'Courier New', monospace",
-  "editor.smoothScrolling": true,
-  "editor.scrollBeyondLastLine": true,
-  "editor.renderWhitespace": "none",
-  "editor.renderControlCharacters": false,
-
-  // --------------------
-  // Курсор
-  // --------------------
-  "editor.cursorBlinking": "expand",
-  "editor.cursorStyle": "line-thin",
-  "editor.cursorSmoothCaretAnimation": "on",
-
-  // --------------------
-  // Форматирование и Prettier
-  // --------------------
+  // --------------------------------------------------------------
+  // 🖨️ Форматирование и линтинг
+  // --------------------------------------------------------------
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit",
+  },
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.jsxSingleQuote": true,
   "prettier.trailingComma": "es5",
   "prettier.arrowParens": "avoid",
+  "prettier.experimentalTernaries": true,
+  "prettier.printWidth": 120,
+  "eslint.useFlatConfig": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "html", "markdown"],
 
-  // Code actions on save - ESLint / organize imports
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit"
+  // --------------------------------------------------------------
+  // 🐹 Golang
+  // --------------------------------------------------------------
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
   },
-
-  // --------------------
-  // Go / gopls
-  // --------------------
-  "go.formatTool": "default",
+  "go.toolsManagement.autoUpdate": true,
+  "go.formatTool": "goimports",
   "gopls": {
     "usePlaceholders": false,
     "staticcheck": true,
-    "ui.semanticTokens": true
+    "ui.semanticTokens": true,
+    "analyses": {
+      "unusedparams": true,
+      "shadow": true,
+    },
   },
+  "go.testExplorer.packageDisplayMode": "flat",
 
-  // Переназначение форматтеров по языкам
-  "[go]": {
-    "editor.defaultFormatter": "golang.go"
+  // --------------------------------------------------------------
+  // 🐍 Python
+  // --------------------------------------------------------------
+  "[python]": {
+    "editor.formatOnType": true,
   },
-  "[vue]": {
-    "editor.defaultFormatter": "Vue.volar"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.indexing": true,
+  "python.analysis.enableParallelIndexing": true,
+  "python.analysis.packageIndexDepths": [{ "name": "", "depth": 3 }],
+  "python.analysis.includeVenvInWorkspaceSymbols": true,
 
-  // --------------------
-  // ESLint
-  // --------------------
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue"
-  ],
-  "eslint.workingDirectories": [{ "mode": "auto" }],
-
-  // --------------------
-  // Терминал
-  // --------------------
+  // --------------------------------------------------------------
+  // 🖥️ Терминал, отладка и окружение
+  // --------------------------------------------------------------
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.shellIntegration.enabled": true,
   "terminal.integrated.smoothScrolling": true,
+  "http.proxySupport": "fallback",
+  "security.workspace.trust.enabled": false,
+  "extensions.ignoreRecommendations": false,
+  "update.mode": "start",
 
-  // --------------------
-  // Git / GitLens
-  // --------------------
-  "git.autofetch": true,
-  "git.autofetchPeriod": 900,
-  "git.confirmSync": true,
-  "git.ignoreMissingGitWarning": true,
-  "git.enableSmartCommit": true,
-  "gitlens.currentLine.enabled": true,
-  "gitlens.hovers.currentLine.over": "line",
-  "gitlens.hovers.annotations.enabled": true,
-  "gitlens.codeLens.recentChange.enabled": true,
-
-  // --------------------
-  // Поиск / навигация
-  // --------------------
-  "search.followSymlinks": false,
-  "search.smartCase": true,
-  "search.useIgnoreFiles": true,
-
-  // --------------------
-  // Word wrap / отображение текста
-  // --------------------
-  "editor.wordWrap": "on",
-  "editor.wordWrapColumn": 120,
-  "editor.wrappingIndent": "same",
-
-  // --------------------
-  // Misc UX
-  // --------------------
-  "editor.linkedEditing": true,
-  "editor.selectionHighlight": true,
-  "editor.multiCursorModifier": "alt",
-  "editor.acceptSuggestionOnEnter": "off",
-
-  // --------------------
-  // Rust
-  // --------------------
-  "rust-analyzer.cargo.autoreload": true,
-  "rust-analyzer.procMacro.enable": true,
-
-  // --------------------
-  // Explorer file nesting - удобно в монорепо
-  // --------------------
-  "explorer.fileNesting.patterns": {
-    "*.ts": "${capture}.js",
-    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
-    "*.jsx": "${capture}.js",
-    "*.tsx": "${capture}.ts",
-    "tsconfig.json": "tsconfig.*.json",
-    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
-    "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata",
-    "*.dart": "${capture}.g.dart",
-    "Cargo.toml": "Cargo.lock",
-    "*.sqlite": "${capture}.${extname}-*",
-    "*.db": "${capture}.${extname}-*",
-    "*.sqlite3": "${capture}.${extname}-*",
-    "*.db3": "${capture}.${extname}-*",
-    "*.sdb": "${capture}.${extname}-*",
-    "*.s3db": "${capture}.${extname}-*"
-  },
-
-  // --------------------
-  // Остальное мелкое
-  // --------------------
-  "python.createEnvironment.trigger": "off",
+  // --------------------------------------------------------------
+  // 💎 Детали расширений
+  // --------------------------------------------------------------
+  "errorLens.enabledDiagnosticLevels": ["error", "warning", "info"],
   "RainbowBrackets.depreciation-notice": false,
-  "makefile.configureOnOpen": true,
-  "chatgpt.localeOverride": "ru-RU"
-
-  // Made by github.com/darkfated
+  "chatgpt.localeOverride": "ru-RU",
 }
